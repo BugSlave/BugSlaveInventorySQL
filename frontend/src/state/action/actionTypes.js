@@ -1,0 +1,2 @@
+export const FETCHERRORS = 'FETCHERRORS';
+export const GETCATEGORIES = "GETCATEGORIES"
