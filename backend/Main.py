@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from AllAPIS.APIs import LoginInformation as li, ProductInformation as pi
+from AllAPIS.APIs import LoginInformation as li, ProductInformation as pi, SupplerCustomerInfo as sci
+from AllAPIS.APIs import Purchase as po, Sales as so
 from flask_cors import CORS
 from functools import wraps
 import jwt, os
@@ -64,8 +65,62 @@ def main_add_products():
 def main_show_categories():
     result = pi().fnShowcategories()
     return jsonify(result)
+
+@app.route('/api/showproducts', methods=['GET'])
+@token_requires
+def main_show_products():
+    result = pi().fnShowProducts()
+    return jsonify(result)
 # ======================== End ========================
 
+# ======================== Supplier and Customer Information ========================
+@app.route('/api/addsupplier', methods=['POST'])
+@token_requires
+def main_add_supplier():
+    data = request.get_json()
+    result = sci().fnAddSupplier(data)
+    return jsonify(result)
+
+@app.route('/api/addcustomer', methods=['POST'])
+@token_requires
+def main_add_customer():
+    data = request.get_json()
+    result = sci().fnAddCustomer(data)
+    return jsonify(result)
+
+
+@app.route('/api/showcustomers', methods=['GET'])
+@token_requires
+def main_show_customers():
+    result = sci().fnShowCustomers()
+    return jsonify(result)
+
+@app.route('/api/showsuppliers', methods=['GET'])
+@token_requires
+def main_show_suppliers():
+    result = sci().fnShowSuppliers()
+    return jsonify(result)
+# ======================== End ========================
+
+
+# ======================== Purchase Information ========================
+@app.route('/api/addpurchaseorder', methods=['POST'])
+@token_requires
+def main_add_purchase_order():
+    data = request.get_json()
+    result = po().fnAddPurchaseOrder(data)
+    return jsonify(result)
+# ======================== End ========================
+
+# ======================== Sales Information ========================
+
+@app.route('/api/addsalesorder', methods=['POST'])
+@token_requires
+def main_add_sales_order():
+    data = request.get_json()
+    result = so().fnAddSalesOrder(data)
+    return jsonify(result)
+# ======================== End ========================
 
 # ======================== RUN APP ========================
 if __name__ == '__main__':

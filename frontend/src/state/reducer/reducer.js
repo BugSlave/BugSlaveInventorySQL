@@ -1,12 +1,18 @@
 
 import {
     GETCATEGORIES,
+    GETCUSTOMERS,
+    GETSUPPLIERS,
+    GETPRODUCTS,
     FETCHERRORS
 } from '../action/actionTypes'
 
 const initialState = {
     error: [],
-    getcategories: []
+    getcategories: [],
+    getcustomers: [],
+    getsuppliers: [],
+    getproducts: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +28,23 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 getcategories: action.payload
             }
+        case GETCUSTOMERS:
+            return {
+                ...state,
+                getcustomers: action.payload
+            }
+        case GETSUPPLIERS:
+            return {
+                ...state,
+                getsuppliers: action.payload
+            }
+
+        case GETPRODUCTS:
+            return {
+                ...state,
+                getproducts: action.payload
+            }
+
         default:
             return state
     }

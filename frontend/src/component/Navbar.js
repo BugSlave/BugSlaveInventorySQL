@@ -142,16 +142,14 @@ const Navbar = ({
                                             </ul>
                                         </div>
                                     </li>
-
-                                    {/* Business Partner Section */}
-                                    {/* <li className="nav-item mb-2">
+                                    <li className="nav-item mb-2">
                                         <button
                                             className="nav-link d-flex align-items-center gap-2 w-100 btn btn-toggle align-items-center rounded collapsed"
                                             data-bs-toggle="collapse"
                                             data-bs-target="#BusinessPartner"
                                             aria-expanded="false"
                                         >
-                                            <i className="bi bi-people"></i> Business Partner
+                                            <i className="bi bi-people"></i> Supplier & Customer Master
                                         </button>
                                         <div className="collapse ps-4" id="BusinessPartner">
                                             <ul className="btn-toggle-nav list-unstyled fw-normal small">
@@ -165,12 +163,47 @@ const Navbar = ({
                                                         <i className="bi bi-person-badge"></i> Customer
                                                     </Link>
                                                 </li>
+
+                                                <li className="nav-item mb-2">
+                                                    <Link
+                                                        className="nav-link d-flex align-items-center gap-2"
+                                                        data-bs-dismiss="offcanvas"
+                                                        aria-label="Close"
+                                                        onClick={() => { navigate('/supplier') }}
+                                                    >
+                                                        <i className="bi bi-person-badge"></i> Supplier
+                                                    </Link>
+                                                </li>
                                             </ul>
                                         </div>
-                                    </li> */}
+                                    </li>
 
-                                    {/* Sales Section */}
-                                    {/* <li className="nav-item mb-2">
+                                    <li className="nav-item mb-2">
+                                        <button
+                                            className="nav-link d-flex align-items-center gap-2 w-100 btn btn-toggle align-items-center rounded collapsed"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#Purchase"
+                                            aria-expanded="false"
+                                        >
+                                            <i className="bi bi-cart-check"></i> Purchase
+                                        </button>
+                                        <div className="collapse ps-4" id="Purchase">
+                                            <ul className="btn-toggle-nav list-unstyled fw-normal small">
+                                                <li className="nav-item mb-2">
+                                                    <Link
+                                                        className="nav-link d-flex align-items-center gap-2"
+                                                        data-bs-dismiss="offcanvas"
+                                                        aria-label="Close"
+                                                        onClick={() => { navigate('/purchaseorder') }}
+                                                    >
+                                                        <i className="bi bi-receipt"></i> Purchase Order
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    <li className="nav-item mb-2">
                                         <button
                                             className="nav-link d-flex align-items-center gap-2 w-100 btn btn-toggle align-items-center rounded collapsed"
                                             data-bs-toggle="collapse"
@@ -186,14 +219,14 @@ const Navbar = ({
                                                         className="nav-link d-flex align-items-center gap-2"
                                                         data-bs-dismiss="offcanvas"
                                                         aria-label="Close"
-                                                        onClick={() => { navigate('/saleinvoice') }}
+                                                        onClick={() => { navigate('/salesorder') }}
                                                     >
-                                                        <i className="bi bi-receipt"></i> Sales Invoice
+                                                        <i className="bi bi-receipt"></i> Sales Order
                                                     </Link>
                                                 </li>
                                             </ul>
                                         </div>
-                                    </li> */}
+                                    </li>
 
                                     {/* Payments Section */}
                                     {/* <li className="nav-item mb-2">

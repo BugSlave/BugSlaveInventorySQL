@@ -122,3 +122,87 @@ class ProductInformation(BaseRepository):
             return self._handle_error("897", "fnShowcategories", e)
         finally:
             self.close()
+
+
+    def fnShowProducts(self):
+        try:
+            return self.execute_sp("SELECT * FROM IMS_Products")
+        except Exception as e:
+            return self._handle_error("896", "fnShowProducts", e)
+        finally:
+            self.close()
+
+
+#============================== Supplier and Customer Information ==============================
+class SupplerCustomerInfo(BaseRepository):
+    def fnAddSupplier(self, data):
+        try:
+            supplier_name = data.get("supplierName")
+            contact_name = data.get("contactName")
+            email = data.get("email")
+            phone = data.get("phone")
+            address = data.get("addresses")
+            return self.execute_sp("EXEC Sp_AddSuppliers ?,?,?,?,?", (supplier_name, contact_name, email, phone, address))
+        except Exception as e:
+            return self._handle_error("799", "fnAddSupplier", e)
+        finally:
+            self.close()
+
+    def fnAddCustomer(self, data):
+        try:
+            customer_name = data.get("customerName")
+            contact_name = data.get("contactName")
+            email = data.get("email")
+            phone = data.get("phone")
+            address = data.get("addresses")
+            return self.execute_sp("EXEC Sp_AddCustomer ?,?,?,?,?", (customer_name, contact_name,  phone, email, address))
+        except Exception as e:
+            return self._handle_error("798", "fnAddCustomer", e)
+        finally:
+            self.close()
+
+
+    def fnShowCustomers(self):
+        try:
+            return self.execute_sp("SELECT * FROM IMS_Customers")
+        except Exception as e:
+            return self._handle_error("797", "fnShowCustomers", e)
+        finally:
+            self.close()
+
+
+    def fnShowSuppliers(self):
+        try:
+            return self.execute_sp("SELECT * FROM IMS_Supliers")
+        except Exception as e:
+            return self._handle_error("796", "fnShowSuppliers", e)
+        finally:
+            self.close()
+
+#============================== Purchase Information ==============================
+class Purchase(BaseRepository):
+    def fnAddPurchaseOrder(self, data):
+        try:
+            supplier_id = data.get("supplierId")
+            product_Id = data.get("productId")
+            quantity = data.get("quantity")
+            unit_price = data.get("unitPrice")
+            return self.execute_sp("EXEC Sp_AddPurchaseOrder ?,?,?,?", (supplier_id, product_Id, quantity, unit_price))
+        except Exception as e:
+            return self._handle_error("699", "fnAddPurchaseOrder", e)
+        finally:
+            self.close()
+
+#============================== Sales Information ==============================
+class Sales(BaseRepository):
+    def fnAddSalesOrder(self, data):
+        try:
+            customer_id = data.get("customerId")
+            product_Id = data.get("productId")
+            quantity = data.get("quantity")
+            unit_price = data.get("unitPrice")
+            return self.execute_sp("EXEC Sp_AddSalesOrder ?,?,?,?", (customer_id, product_Id, quantity, unit_price))
+        except Exception as e:
+            return self._handle_error("599", "fnAddCustomer", e)
+        finally:
+            self.close()

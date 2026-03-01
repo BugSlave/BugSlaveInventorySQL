@@ -13,7 +13,10 @@ import Dashboard from './component/Dashboard';
 import HomePage from './component/Homepage';
 import Categories from './component/Categories';
 import Products from './component/Products';
-
+import Supplier from './component/Supplier';
+import Customer from './component/Customer';
+import PurchaseOrder from './component/PurchaseOrder';
+import SalesOrder from './component/SalesOrder';
 
 function App() {
 
@@ -79,6 +82,10 @@ function App() {
           <Route exact path='/dashboard' element={<Dashboard setProgress={setProgress}></Dashboard>}></Route>
           <Route exact path="/categories" element={<Categories setProgress={setProgress} showAlert={showAlert}></Categories>}></Route>
           <Route exact path="/products" element={<Products setProgress={setProgress} showAlert={showAlert}></Products>}></Route>
+          <Route exact path="/supplier" element={<Supplier setProgress={setProgress} showAlert={showAlert}></Supplier>}></Route>
+          <Route exact path="/customer" element={<Customer setProgress={setProgress} showAlert={showAlert}></Customer>}></Route>
+          <Route exact path="/purchaseorder" element={<PurchaseOrder setProgress={setProgress} showAlert={showAlert}></PurchaseOrder>}></Route>
+          <Route exact path="/salesorder" element={<SalesOrder setProgress={setProgress} showAlert={showAlert}></SalesOrder>}></Route>
         </Routes>
       </Router>
     </>
