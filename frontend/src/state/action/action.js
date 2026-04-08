@@ -3,6 +3,8 @@ import {
     GETCUSTOMERS,
     GETPRODUCTS,
     GETSUPPLIERS,
+    GETPURCHASEORDER,
+    GETSALESORDER,
     FETCHERRORS
 } from './actionTypes'
 import { jwtDecode } from 'jwt-decode';
@@ -85,6 +87,28 @@ export const fn_show_categories = () => async (dispatch) => {
 }
 
 
+// ::::::::::::::::::::::: Update Category :::::::::::::::::::::::::::::::::::::::::::::::::
+
+export const fn_update_category = (data) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/updatecategory`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            },
+            body: JSON.stringify(data)
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
 //:::::::::::::::::::::::: Add Products :::::::::::::::::::::::::::::::::::::::::::::::::
 export const fn_add_products = (data) => async (dispatch) => {
     try {
@@ -124,6 +148,110 @@ export const fn_show_products = () => async (dispatch) => {
         dispatch({ type: FETCHERRORS, payload: error.response.data })
     }
 }
+
+
+// ::::::::::::::::::::::: Update Products :::::::::::::::::::::::::::::::::::::::::::::::::
+
+export const fn_update_products = (data) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/updateproducts`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            },
+            body: JSON.stringify(data)
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+//::::::::::::::::::::::: Show Product By Id :::::::::::::::::::::::::::::::::::::
+export const fn_show_products_by_id = (productId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showproductbyid`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ productId: productId })
+        })
+        const json = await response.json();
+        return json;
+
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+//::::::::::::::::::::::: Show Inventory Summary report :::::::::::::::::::::::::::::::::::::
+export const fn_show_inventory_summary = (dateFrom, dateTo, productId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/inventorytransactionsummary`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ dateFrom: dateFrom, dateTo: dateTo, productId: productId })
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+//::::::::::::::::::::::: Show Inventory Detail report :::::::::::::::::::::::::::::::::::::
+export const fn_show_inventory_detail = (dateFrom, dateTo, productId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/inventorytransactiondetail`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ dateFrom: dateFrom, dateTo: dateTo, productId: productId})
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+//::::::::::::::::::::::: Show batch details :::::::::::::::::::::::::::::::::::::
+export const fn_show_batch_detail = (productId, batchName, documentId, documentName) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showbatchdetail`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ productId: productId, batchName: batchName, documentId: documentId, documentName: documentName})
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+
 
 //:::::::::::::::::::::::: Add Supplier :::::::::::::::::::::::::::::::::::::::::::::::::
 export const fn_add_supplier = (supplierName, contactName, phone, email, address) => async (dispatch) => {
@@ -218,17 +346,70 @@ export const fn_show_customers = () => async (dispatch) => {
     }
 }
 
+// ::::::::::::::::::::::: Update Customers :::::::::::::::::::::::::::::::::::::::::::::::::
+
+export const fn_update_customer = (customerName, contactName, phone, email, address, id) => async (dispatch) => {
+    try {
+        const data = {
+            customerName: customerName,
+            contactName: contactName,
+            phone: phone,
+            email: email,
+            addresses: address,
+            id: id
+        };
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/updatecustomer`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            },
+            body: JSON.stringify(data)
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+// ::::::::::::::::::::::: Update Supplier :::::::::::::::::::::::::::::::::::::::::::::::::
+
+export const fn_update_supplier = (supplierName, contactName, phone, email, address, id) => async (dispatch) => {
+    try {
+        const data = {
+            supplierName: supplierName,
+            contactName: contactName,
+            phone: phone,
+            email: email,
+            addresses: address,
+            id: id
+        };
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/updatesupplier`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            },
+            body: JSON.stringify(data)
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
 //:::::::::::::::::::::::: Add Purchase Order :::::::::::::::::::::::::::::::::::::::::::::::::
 
-export const fn_add_purchase_order = (supplierId, productId, quantity, unitPrice) => async (dispatch) => {
+export const fn_add_purchase_order = (data) => async (dispatch) => {
     try {
         const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
-        const data = {
-            supplierId: supplierId,
-            productId: productId,
-            quantity: quantity,
-            unitPrice: unitPrice
-        };
         const response = await fetch(`${host}/addpurchaseorder`, {
             method: 'POST',
             headers: {
@@ -246,16 +427,96 @@ export const fn_add_purchase_order = (supplierId, productId, quantity, unitPrice
 }
 
 
+export const fn_show_purchase_order = () => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+
+        const response = await fetch(`${host}/showpurchaseorder`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }
+        })
+        const json = await response.json();
+        dispatch({ type: GETPURCHASEORDER, payload: json })
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+//::::::::::::::::::::::: Show Purchase Summary report :::::::::::::::::::::::::::::::::::::
+export const fn_show_purchase_order_summary = (dateFrom, dateTo) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showpurchaseorderreport`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ dateFrom: dateFrom, dateTo: dateTo})
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+//::::::::::::::::::::::: Show Purchase Detail report :::::::::::::::::::::::::::::::::::::
+export const fn_show_purchase_order_detail = (documentId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showpurchaseorderdetailreport`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ documentId: documentId})
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+export const fn_show_purchase_item_detail = (documentId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showpurchaseitemdetails`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ documentId: documentId})
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
 //:::::::::::::::::::::::: Add Sales Order :::::::::::::::::::::::::::::::::::::::::::::::::
 
-export const fn_add_sales_order = (customerId, productId, quantity, unitPrice) => async (dispatch) => {
+export const fn_add_sales_order = (customerId, productId, quantity, unitPrice, batchName, inStock, lastPurPrice) => async (dispatch) => {
     try {
         const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
         const data = {
             customerId: customerId,
             productId: productId,
             quantity: quantity,
-            unitPrice: unitPrice
+            unitPrice: unitPrice,
+            batchName: batchName,
+            inStock: inStock,
+            lastPurPrice: lastPurPrice
         };
         const response = await fetch(`${host}/addsalesorder`, {
             method: 'POST',
@@ -264,6 +525,64 @@ export const fn_add_sales_order = (customerId, productId, quantity, unitPrice) =
                 'authToken': token
             },
             body: JSON.stringify(data)
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+export const fn_show_sales_order = () => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+
+        const response = await fetch(`${host}/showsalesorder`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }
+        })
+        const json = await response.json();
+        dispatch({ type: GETSALESORDER, payload: json })
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+
+//::::::::::::::::::::::: Show Sales Summary report :::::::::::::::::::::::::::::::::::::
+export const fn_show_sales_order_summary = (dateFrom, dateTo) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showsalesorderreport`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ dateFrom: dateFrom, dateTo: dateTo})
+        })
+        const json = await response.json();
+        return json;
+
+    } catch (error) {
+        dispatch({ type: FETCHERRORS, payload: error.response.data })
+    }
+}
+
+//::::::::::::::::::::::: Show Sales Detail report :::::::::::::::::::::::::::::::::::::
+export const fn_show_sales_order_detail = (documentId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+        const response = await fetch(`${host}/showsalesorderdetailreport`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'authToken': token
+            }, body: JSON.stringify({ documentId: documentId})
         })
         const json = await response.json();
         return json;

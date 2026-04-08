@@ -97,7 +97,7 @@ const Navbar = ({
                         <div className="offcanvas-header border-bottom">
                             <h5 className="offcanvas-title d-flex align-items-center gap-2" id="offcanvasExampleLabel" style={{ cursor: 'pointer' }} onClick={() => navigate('/home')} data-bs-dismiss="offcanvas" aria-label="Close">
                                 <img src="Logo.png" alt="SAP Logo" width="30" height="30" className="d-inline-block align-text-top" />
-                                BugSlave Inevntory
+                                BugSlave Inventory
                             </h5>
                             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
@@ -139,6 +139,28 @@ const Navbar = ({
                                                         <i className="bi bi-person-badge"></i> Product Master
                                                     </Link>
                                                 </li>
+
+
+                                                <button
+                                                    className="nav-link d-flex align-items-center gap-2 w-100 btn btn-toggle align-items-center rounded collapsed"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#ProductsReports"
+                                                    aria-expanded="false"
+                                                >
+                                                    <i className="bi bi-file-earmark-text"></i> Reports
+                                                </button>
+                                                <div className="collapse ps-4" id="ProductsReports">
+                                                    <li className="nav-item mb-2">
+                                                        <Link
+                                                            className="nav-link d-flex align-items-center gap-2"
+                                                            data-bs-dismiss="offcanvas"
+                                                            aria-label="Close"
+                                                            onClick={() => { navigate('/inventorytransaction') }}
+                                                        >
+                                                            <i className="bi bi-box-seam"></i> Inventory Transactions
+                                                        </Link>
+                                                    </li>
+                                                </div>
                                             </ul>
                                         </div>
                                     </li>
@@ -199,6 +221,27 @@ const Navbar = ({
                                                         <i className="bi bi-receipt"></i> Purchase Order
                                                     </Link>
                                                 </li>
+
+                                                <button
+                                                    className="nav-link d-flex align-items-center gap-2 w-100 btn btn-toggle align-items-center rounded collapsed"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#POReport"
+                                                    aria-expanded="false"
+                                                >
+                                                    <i className="bi bi-file-earmark-text"></i> Reports
+                                                </button>
+                                                <div className="collapse ps-4" id="POReport">
+                                                    <li className="nav-item mb-2">
+                                                        <Link
+                                                            className="nav-link d-flex align-items-center gap-2"
+                                                            data-bs-dismiss="offcanvas"
+                                                            aria-label="Close"
+                                                            onClick={() => { navigate('/purchaseorderreport') }}
+                                                        >
+                                                            <i className="bi bi-box-seam"></i> Purchase Order Report
+                                                        </Link>
+                                                    </li>
+                                                </div>
                                             </ul>
                                         </div>
                                     </li>
@@ -224,6 +267,28 @@ const Navbar = ({
                                                         <i className="bi bi-receipt"></i> Sales Order
                                                     </Link>
                                                 </li>
+
+
+                                                <button
+                                                    className="nav-link d-flex align-items-center gap-2 w-100 btn btn-toggle align-items-center rounded collapsed"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#SOReport"
+                                                    aria-expanded="false"
+                                                >
+                                                    <i className="bi bi-file-earmark-text"></i> Reports
+                                                </button>
+                                                <div className="collapse ps-4" id="SOReport">
+                                                    <li className="nav-item mb-2">
+                                                        <Link
+                                                            className="nav-link d-flex align-items-center gap-2"
+                                                            data-bs-dismiss="offcanvas"
+                                                            aria-label="Close"
+                                                            onClick={() => { navigate('/salesorderreport') }}
+                                                        >
+                                                            <i className="bi bi-box-seam"></i> Sales Order Report
+                                                        </Link>
+                                                    </li>
+                                                </div>
                                             </ul>
                                         </div>
                                     </li>

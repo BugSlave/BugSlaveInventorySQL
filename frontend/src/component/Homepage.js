@@ -1,12 +1,12 @@
 import React from 'react'
 import Dashboard from './Dashboard'
 
-const HomePage = ({setProgress}) => {
+const HomePage = ({ setProgress }) => {
     return (
-        <>
-            <Dashboard setProgress={setProgress}></Dashboard>
-        </>
-    )
-}
+        <div >
+            <Dashboard setProgress={setProgress} />
+        </div>
+    );
+};
 
 export default HomePage

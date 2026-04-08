@@ -17,6 +17,12 @@ import Supplier from './component/Supplier';
 import Customer from './component/Customer';
 import PurchaseOrder from './component/PurchaseOrder';
 import SalesOrder from './component/SalesOrder';
+import InventoryTransaction from './component/InventoryTransaction';
+import PurchaseOrderReport from './component/PurchaseOrderReport';
+import SalesOrderReport from './component/SalesOrderReport';
+
+import { FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
+
 
 function App() {
 
@@ -68,26 +74,113 @@ function App() {
   }, [])
   return (
     <>
-      <Router>
-        <ToastContainer notify={notify} closeOnClick stacked draggable></ToastContainer>
-        <LoadingBar
-          color="#f11946"
-          progress={progress}
-          onLoaderFinished={() => setProgress(0)}
-        ></LoadingBar>
-        <Navbar></Navbar>
-        <Routes>
-          <Route exact path='/' element={<Login showAlert={showAlert}></Login>}></Route>
-          <Route exact path='/home' element={<HomePage setProgress={setProgress}></HomePage>}></Route>
-          <Route exact path='/dashboard' element={<Dashboard setProgress={setProgress}></Dashboard>}></Route>
-          <Route exact path="/categories" element={<Categories setProgress={setProgress} showAlert={showAlert}></Categories>}></Route>
-          <Route exact path="/products" element={<Products setProgress={setProgress} showAlert={showAlert}></Products>}></Route>
-          <Route exact path="/supplier" element={<Supplier setProgress={setProgress} showAlert={showAlert}></Supplier>}></Route>
-          <Route exact path="/customer" element={<Customer setProgress={setProgress} showAlert={showAlert}></Customer>}></Route>
-          <Route exact path="/purchaseorder" element={<PurchaseOrder setProgress={setProgress} showAlert={showAlert}></PurchaseOrder>}></Route>
-          <Route exact path="/salesorder" element={<SalesOrder setProgress={setProgress} showAlert={showAlert}></SalesOrder>}></Route>
-        </Routes>
-      </Router>
+      <div
+        style={{
+          minHeight: "calc(100vh - 00px)",
+          display: "flex",
+          flexDirection: "column"
+        }}
+      >
+        <Router>
+          <ToastContainer notify={notify} closeOnClick stacked draggable />
+
+          <LoadingBar
+            color="#f11946"
+            progress={progress}
+            onLoaderFinished={() => setProgress(0)}
+          />
+
+          <Navbar />
+
+          <div style={{ flex: 1 }}>
+            <Routes>
+              <Route path='/' element={<Login showAlert={showAlert} />} />
+              <Route path='/home' element={<HomePage setProgress={setProgress} />} />
+              <Route path='/dashboard' element={<Dashboard setProgress={setProgress} />} />
+              <Route path="/categories" element={<Categories setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/products" element={<Products setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/supplier" element={<Supplier setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/customer" element={<Customer setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/purchaseorder" element={<PurchaseOrder setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/salesorder" element={<SalesOrder setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/inventorytransaction" element={<InventoryTransaction setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/purchaseorderreport" element={<PurchaseOrderReport setProgress={setProgress} showAlert={showAlert} />} />
+              <Route path="/salesorderreport" element={<SalesOrderReport setProgress={setProgress} showAlert={showAlert} />} />
+            </Routes>
+          </div>
+
+          <footer
+            style={{
+              textAlign: "center",
+              padding: "10px 6px",
+              borderTop: "1px solid #e5e7eb"
+            }}
+          >
+            <h6 style={{ margin: "0 0 4px 0", fontWeight: "500" }}>
+              © 2026 <span style={{ color: "#6366f1" }}>BugSlave</span>
+            </h6>
+
+            <div className="d-flex justify-content-center gap-2 flex-wrap">
+
+              {/* Subscribe */}
+              <a
+                href="https://www.youtube.com/@BugSlave?sub_confirmation=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="d-flex align-items-center gap-1 social-btn youtube-glow"
+                style={{
+                  padding: "4px 10px",
+                  borderRadius: "6px",
+                  background: "#ef4444",
+                  color: "#fff",
+                  textDecoration: "none",
+                  fontSize: "12px",
+                  fontWeight: "600"
+                }}
+              >
+                <FaYoutube /> Subscribe
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/_bugslave/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="d-flex align-items-center gap-1 social-btn instagram-glow"
+                style={{
+                  padding: "4px 10px",
+                  borderRadius: "6px",
+                  background: "#f3f4f6",
+                  color: "#111",
+                  textDecoration: "none",
+                  fontSize: "12px"
+                }}
+              >
+                <FaInstagram color="#E1306C" /> Instagram
+              </a>
+
+              {/* Facebook */}
+              <a
+                href="https://www.facebook.com/profile.php?id=61583733376189"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="d-flex align-items-center gap-1 social-btn facebook-glow"
+                style={{
+                  padding: "4px 10px",
+                  borderRadius: "6px",
+                  background: "#f3f4f6",
+                  color: "#111",
+                  textDecoration: "none",
+                  fontSize: "12px"
+                }}
+              >
+                <FaFacebook color="#1877F2" /> Facebook
+              </a>
+
+            </div>
+          </footer>
+        </Router>
+      </div>
     </>
   );
 }

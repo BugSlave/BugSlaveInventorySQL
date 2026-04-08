@@ -1,38 +1,138 @@
-.App {
-  text-align: center;
+
+/** Order Header CSS**/
+.card-premium {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-gradient {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.section-box, .section-box-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.input-clean {
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
 }
 
-.App-link {
-  color: #61dafb;
+.input-clean:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99,102,241,0.15);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.table tbody tr:hover {
+    background: #f1f5ff;
+}
+
+.btn-icon {
+    background: #eef2ff;
+    border-radius: 6px;
+    border: none;
+    padding: 4px 8px;
+}
+
+/* Modaal Work*/
+.modal-premium .modal-content {
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Header */
+.modal-header-premium {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff;
+  padding: 16px 20px;
+  border-bottom: none;
+}
+
+.modal-title-premium {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Search */
+.search-box {
+  border-radius: 10px;
+  border: none;
+  padding: 6px 12px;
+  outline: none;
+}
+
+/* Body */
+.modal-body-premium {
+  padding: 16px;
+  background: #f9fafb;
+}
+
+/* Table */
+.table-premium {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.table-premium thead {
+  background: #f1f5f9;
+}
+
+.table-premium th {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  padding: 12px;
+}
+
+.table-premium td {
+  padding: 12px;
+  font-size: 14px;
+}
+
+.table-premium tbody tr {
+  transition: all 0.2s ease;
+}
+
+.table-premium tbody tr:hover {
+  background: #eef2ff;
+  transform: scale(1.01);
+}
+
+/* Footer */
+.modal-footer-premium {
+  border-top: 1px solid #e5e7eb;
+  padding: 12px 16px;
+}
+
+
+
+/* Subscribe Footer*/
+.social-btn {
+  transition: all 0.25s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* YouTube Glow */
+.youtube-glow:hover {
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+/* Instagram Glow */
+.instagram-glow:hover {
+  box-shadow: 0 0 8px rgba(225, 48, 108, 0.6);
+}
+
+/* Facebook Glow */
+.facebook-glow:hover {
+  box-shadow: 0 0 8px rgba(24, 119, 242, 0.6);
 }

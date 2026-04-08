@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
     fn_show_categories,
     fn_add_category,
+    fn_update_category,
     fn_token_decode
 } from '../state/action/action';
 import { useLocation } from 'react-router-dom';
@@ -12,6 +13,7 @@ const Categories = ({
     , fn_token_decode
     , fn_show_categories, getcategories
     , fn_add_category
+    , fn_update_category
 }) => {
 
     const location = useLocation();
@@ -120,6 +122,30 @@ const Categories = ({
             })));
         }
     }, [getcategories, result]);
+
+
+    const handleUpdateCategory = useCallback(async () => {
+        if (isLoading) return;
+        setIsLoading(true);
+        try {
+
+            const result = await fn_update_category(addCategory);
+            for (const res of result) {
+                if (res.ErrorCode === "0") {
+                    fn_show_categories();
+                    showAlert('success', res.ErrorName);
+                    handleCloseModal(); // ✅ Uses handleCloseModal
+                    ref.current?.click();
+                } else {
+                    showAlert('error', res.ErrorName);
+                }
+            }
+        } catch (error) {
+            throw error;
+        } finally {
+            setIsLoading(false);
+        }
+    }, [addCategory, fn_update_category, fn_show_categories, showAlert, handleCloseModal, isLoading]); // ✅ All deps
 
 
     return (
@@ -239,7 +265,7 @@ const Categories = ({
                             <button
                                 type="button"
                                 className="btn btn-primary"
-                                onClick={addCategory[0].branchId ? "" : handleSaveCategory}
+                                onClick={addCategory[0].categoryId ? handleUpdateCategory : handleSaveCategory}
                                 disabled={isLoading}
                             >
                                 {isLoading ? 'Processing...' : (addCategory[0].categoryId ? 'Update changes' : 'Save changes')}
@@ -261,6 +287,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     fn_show_categories,
     fn_add_category,
+    fn_update_category,
     fn_token_decode
 }
 
